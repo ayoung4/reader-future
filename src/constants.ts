@@ -15,6 +15,10 @@ export type Ask = <T>() => ReaderFuture<T, any, T>;
 
 export type Asks = <T, R>(fn: (t: T) => R) => ReaderFuture<T, any, R>;
 
+export type Attempt = <T, L, R>(fn: (t: T) => R) => ReaderFuture<T, L, R>;
+
+export type AsksFor = <T, L, R>(fn: (t: T) => F.FutureInstance<L, R>) => ReaderFuture<T, L, R>;
+
 type ConfigOf<T> = T extends ReaderFuture<infer U, any, any> ? U : never;
 type LeftOf<T> = T extends ReaderFuture<any, infer U, any> ? U : never;
 type RightOf<T> = T extends ReaderFuture<any, any, infer U> ? U : never;
@@ -42,5 +46,3 @@ export type FromFuture = <L, R>(f: F.FutureInstance<L, R>) => ReaderFuture<any, 
 export type FromPromise = <L, R>(fn: () => Promise<R>) => ReaderFuture<any, L, R>;
 
 export type FromNode = <L, R>(fn: (done: F.Nodeback<L, R>) => void) => ReaderFuture<any, L, R>;
-
-export type Attempt = <T, L, R>(fn: (t: T) => R) => ReaderFuture<T, L, R>;
