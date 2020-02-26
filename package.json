@@ -1,9 +1,13 @@
 {
   "name": "reader-future",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "build": "tsc ./src/index --outdir ./dist --declaration",
     "clean": "rm ./dist/*",
