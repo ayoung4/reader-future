@@ -35,4 +35,8 @@ export type Parallel = <T extends ReaderFuture<any, any, any>[]>(parallelism: nu
 
 export type FromFuture = <L, R>(f: F.FutureInstance<L, R>) => ReaderFuture<{}, L, R>;
 
+export type FromPromise = <L, R>(fn: () => Promise<R>) => ReaderFuture<{}, L, R>;
+
+export type FromNode = <L, R>(fn: (done: F.Nodeback<L, R>) => void) => ReaderFuture<{}, L, R>;
+
 export type Attempt = <T, L, R>(fn: (t: T) => R) => ReaderFuture<T, L, R>;

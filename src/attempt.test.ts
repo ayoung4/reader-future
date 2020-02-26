@@ -5,19 +5,19 @@ import { attempt } from './attempt';
 
 describe('attempt', function () {
 
-    const val = 10;
-    const fn = (x: number) => x + 3;
+    it('creates a readerfuture from an effectful function', function (done) {
 
-    it('creates a readerfuture that runs', function (done) {
+        let val = 10;
+        const fn = (x: number) => val += x;
 
         attempt(fn).fold(
             throwErr(shouldHaveRun),
-            (res) => {
-                chai.expect(res).to.equal(fn(val));
+            () => {
+                chai.expect(val).to.equal(13);
                 done();
             },
         )
-            .with(val)
+            .with(3)
             .promise();
 
     });
