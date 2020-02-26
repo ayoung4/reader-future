@@ -11,6 +11,10 @@ export type Of = <R>(r: R) => ReaderFuture<{}, never, R>;
 
 export type Fail = <L>(l: L) => ReaderFuture<{}, L, never>;
 
+export type Ask = <T extends object>() => ReaderFuture<T, never, T>;
+
+export type Asks = <T extends object, R>(fn: (t: T) => R) => ReaderFuture<T, never, R>;
+
 type ConfigOf<T> = T extends ReaderFuture<infer U, any, any> ? U : never;
 type LeftOf<T> = T extends ReaderFuture<any, infer U, any> ? U : never;
 type RightOf<T> = T extends ReaderFuture<any, any, infer U> ? U : never;
